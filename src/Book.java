@@ -7,22 +7,22 @@ public class Book {
     /**
      * Book title.
      */
-    private String title;
+    final private String title;
 
     /**
      * Book author.
      */
-    private String author;
+    final private String author;
 
     /**
      * Book release year.
      */
-    private int releaseYear;
+    final private int releaseYear;
 
     /**
      * Book edition.
      */
-    private int edition;
+    final private int edition;
 
     /**
      * Book availability.
@@ -102,7 +102,7 @@ public class Book {
      * FIFO queue.
      * @return - Whether reservation has been made or not.
      */
-    public boolean makeReservation(String name) {
+    public boolean reserve(String name) {
         if (!this.status) {
             this.reserveQueue.add(name);
             return true;

@@ -35,7 +35,7 @@ public class Library {
             System.out.println("5. Reserve a book");
             System.out.println("6. Exit");
 
-            if (input.hasNextInt() && input.nextInt() > 0 && input.nextInt() < 7) {
+            if (input.hasNextInt()) {
                 menuSelection = input.nextInt();
                 input.nextLine();
 
@@ -59,6 +59,8 @@ public class Library {
                     case 6:
                         System.out.println("Leaving library.");
                         System.exit(0);
+                    default:
+                        System.out.println("Please enter a valid option!");
                 }
 
             } else {
@@ -104,7 +106,7 @@ public class Library {
 
         for (Book book : books) {
             if (book.getTitle().equalsIgnoreCase(bookTitle)) {
-                System.out.println(book);
+                System.out.println(book.toString());
                 System.out.println("Do you want to lend the book? Y/n");
                 if (input.nextLine().equalsIgnoreCase("Y")) {
                     if (book.loan()) {
@@ -133,7 +135,7 @@ public class Library {
         for (Book book : books) {
             if (book.getStatus()) {
                 counter++;
-                System.out.println(counter + book.getTitle());
+                System.out.println(counter + " " + book);
             }
         }
 
@@ -171,11 +173,13 @@ public class Library {
      */
     private void reserveBook(String bookTitle) {
         Scanner input = new Scanner(System.in);
+        String username;
 
         for (Book book : books) {
             if (book.getTitle().equalsIgnoreCase(bookTitle)) {
                 System.out.println("Enter your name: ");
-                if (book.makeReservation(input.nextLine())) {
+                username = input.nextLine();
+                if (book.reserve(username)) {
                     System.out.println("Reservation was successful.");
                 } else {
                     System.out.println("Book is available. Lend it? Y/n");
@@ -188,9 +192,10 @@ public class Library {
                     } else {
                         System.out.println("Returning to menu.");
                     }
-
+                    return;
                 }
             }
         }
+        System.out.println("Book not found");
     }
 }
