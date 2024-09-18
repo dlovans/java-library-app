@@ -8,7 +8,7 @@ public class Library {
     /**
      * Collection of books.
      */
-    private ArrayList<Book> books;
+    final private ArrayList<Book> books;
 
     /**
      * Creates an instance of Library.
@@ -106,7 +106,7 @@ public class Library {
 
         for (Book book : books) {
             if (book.getTitle().equalsIgnoreCase(bookTitle)) {
-                System.out.println(book.toString());
+                System.out.println(book);
                 System.out.println("Do you want to lend the book? Y/n");
                 if (input.nextLine().equalsIgnoreCase("Y")) {
                     if (book.loan()) {

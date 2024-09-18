@@ -32,7 +32,7 @@ public class Book {
     /**
      * Reserve queue.
      */
-    private ArrayList<String> reserveQueue;
+    final private ArrayList<String> reserveQueue;
 
     /**
      * Creates an instance of Book with default and specified values.
@@ -72,8 +72,8 @@ public class Book {
             if (this.reserveQueue.isEmpty()) {
                 this.status = true;
             } else {
+                System.out.println("Book lent to " + this.reserveQueue.getFirst() + ".");
                 this.reserveQueue.removeFirst();
-                System.out.println("Book lended to reserver.");
             }
             return true;
         } else {
